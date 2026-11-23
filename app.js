@@ -4,6 +4,7 @@ import { engine } from './lib/engine.js';
 import { Runtime } from './lib/runtime.js';
 import { View } from './lib/view.js';
 import { TUTES, loadTute } from './lib/tutes.js';
+import { readText } from './lib/files.js';
 
 const $ = (id) => document.getElementById(id);
 const h = (tag, props = {}, ...kids) => { const e = Object.assign(document.createElement(tag), props); for (const k of kids.flat()) if (k !== null && k !== undefined && k !== false) e.append(k); return e; };
@@ -185,7 +186,7 @@ async function route() {
   $('lesson').hidden = true;
   try {
     if (what === 'paint' || what === 'draw') {
-      const src = await (await fetch(`demos/${what}.pl`)).text();
+      const src = await readText(`demos/${what}.pl`);
       await run(src, { name: `demos/${what}.pl`, kind: 'demo' });
     } else if (what === 'tutes') tuteList();
     else if (what === 'tute') await tute(id, Number(n) || 1);

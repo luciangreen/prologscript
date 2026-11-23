@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrologScript in a page</title>
+<script src="prologscript.js"></script>
+<style>body { font: 16px/1.5 system-ui, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; }</style>
+</head>
+<body>
+<h1>PrologScript in a page</h1>
+<p>This page has no JavaScript of its own. The program below is Prolog in a <code>&lt;script type="text/prolog"&gt;</code>; <code>prologscript.js</code> runs it in its place. Tap or drag to paint, and right-click (or press and hold) for colours.</p>
+
+<script type="text/prolog">
+title("Finger painting").
+canvas(640, 360, white).
+
+popup_menu(context, [menu("Colour", [menu("Warm", [item("Red", brush(colour, red)), item("Orange", brush(colour, orange))]),
+                                    menu("Cool", [item("Blue", brush(colour, blue)), item("Green", brush(colour, green))])]),
+                item("Bigger brush", (brush_is(size, S), S1 is S + 4, brush(size, S1))),
+                item("Undo", undo)]).
+
+on(start) :- brush(size, 6), say("Paint with the mouse or a finger.").
+on(down(X, Y)) :- paint(dot(X, Y)), nb_setval(last, X-Y).
+on(drag(X, Y)) :- nb_getval(last, X0-Y0), paint(line(X0, Y0, X, Y)), nb_setval(last, X-Y).
+</script>
+
+<p>Copy this file and <code>prologscript.js</code> anywhere, change the Prolog, and open the page.</p>
+</body>
+</html>

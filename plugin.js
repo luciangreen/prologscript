@@ -13,7 +13,9 @@ let styled = false;
 function style() {
   if (styled) return;
   styled = true;
-  document.head.append(Object.assign(document.createElement('link'), { rel: 'stylesheet', href: new URL('./lib/view.css', import.meta.url).href }));
+  // the pack carries the styles as text (globalThis.PS_CSS); otherwise they are beside this file
+  if (typeof globalThis.PS_CSS === 'string') document.head.append(Object.assign(document.createElement('style'), { textContent: globalThis.PS_CSS }));
+  else document.head.append(Object.assign(document.createElement('link'), { rel: 'stylesheet', href: new URL('./lib/view.css', import.meta.url).href }));
 }
 const h = (tag, props = {}, ...kids) => { const e = Object.assign(document.createElement(tag), props); e.append(...kids); return e; };
 

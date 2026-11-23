@@ -1,0 +1,33 @@
+name: Pack
+
+# Builds the pack (scripts/pack.mjs) on every push. A tag such as v0.1.0 also publishes it as a
+# GitHub release, with prologscript.html, prologscript.js and prologscript-pack.zip to download.
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - name: Build the pack
+        run: npm run pack
+      - name: Check the pack
+        run: node --test test/pack.test.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prologscript-pack
+          path: dist/
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/prologscript.html dist/prologscript.js dist/prologscript-pack.zip --title "PrologScript $GITHUB_REF_NAME" --notes-file dist/release-notes.md || gh release upload "$GITHUB_REF_NAME" dist/prologscript.html dist/prologscript.js dist/prologscript-pack.zip --clobber

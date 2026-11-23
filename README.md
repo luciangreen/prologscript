@@ -14,6 +14,8 @@ It is a plug-in for [Visual Starlog](https://github.com/luciangreen/visualstarlo
 - a **tute** for each element;
 - **My program** for your own.
 
+There is also a **pack**, which works on its own without LucianOS ([below](#the-pack-without-lucianos)).
+
 The code is always visible beside the running program. The clause that answered the last event is marked, and a trace lists each event, the commands it gave (with what they answered) and any error. Programs run in the page on the [pl2detlog](https://github.com/luciangreen/pl2detlog) Prolog interpreter (`vendor/pl2detlog.js`), so nothing needs installing and it works on an iPhone. Use a finger for drawing; hold a finger down for the pop-up menu.
 
 ## A program
@@ -111,6 +113,35 @@ Add an item of the kind *PrologScript program* to a slide and choose a `.pl` fil
 import { mountProgram } from '../prologscript/plugin.js';
 const ps = await mountProgram(element, source, { code: true });   // ps.destroy() stops it
 ```
+
+## The pack, without LucianOS
+
+The pack is PrologScript on its own. It needs no LucianOS, no server, nothing to install and no internet connection. Download it from the [releases](https://github.com/luciangreen/prologscript/releases), or build it with `npm install && npm run pack` (it goes in `dist/`).
+
+| File | What it is |
+| --- | --- |
+| `prologscript.html` | The whole app in one file: Paint and Draw with their code, the tutes, and My program. Double-click it, send it, put it on a USB stick or any web host. It works on iPhone and Android. |
+| `prologscript.js` | A drop-in script that puts PrologScript programs in your own pages (below). |
+| `example.html` | A page that uses `prologscript.js`. |
+| `prologscript-pack.zip` | All three, the demos and tutes as `.pl` files, a README and the licence. |
+
+With `prologscript.js`, a page needs no JavaScript of its own. Each `<script type="text/prolog">` becomes the running program, in its place:
+
+```html
+<script src="prologscript.js"></script>
+<script type="text/prolog">
+canvas(400, 300, white).
+popup_menu(context, [menu("Colour", [item("Red", brush(colour, red)), item("Blue", brush(colour, blue))])]).
+on(down(X, Y)) :- paint(dot(X, Y)), nb_setval(last, X-Y).
+on(drag(X, Y)) :- nb_getval(last, X0-Y0), paint(line(X0, Y0, X, Y)), nb_setval(last, X-Y).
+</script>
+```
+
+- **`data-src="paint.pl"`:** reads the program from a file instead. The page must then be served, not opened from a folder.
+- **`data-code="false"`:** hides the code fold under the program.
+- **From JavaScript:** `PrologScript.mountProgram(element, source, { code: true })` mounts a program, and `PrologScript.mountScripts()` mounts any scripts added since the page loaded.
+
+Each push builds the pack in CI (the Pack workflow). Pushing a tag such as `v0.1.1` also publishes it as a release.
 
 ## Install
 
