@@ -141,7 +141,7 @@ on(drag(X, Y)) :- nb_getval(last, X0-Y0), paint(line(X0, Y0, X, Y)), nb_setval(l
 - **`data-code="false"`:** hides the code fold under the program.
 - **From JavaScript:** `PrologScript.mountProgram(element, source, { code: true })` mounts a program, and `PrologScript.mountScripts()` mounts any scripts added since the page loaded.
 
-Each push builds the pack in CI (the Pack workflow). Pushing a tag such as `v0.1.1` also publishes it as a release.
+Each push builds the pack in CI (the Pack workflow). On `main`, the workflow also publishes the pack as the release for `package.json`'s version. To start a new release, raise the version.
 
 ## Install
 
