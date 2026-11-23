@@ -195,6 +195,5 @@ async function route() {
   }
 }
 
-P = await engine();
-addEventListener('hashchange', route);
-route();
+// started without a top-level await, so the app also builds for older browsers (lucianos-web)
+engine().then((p) => { P = p; addEventListener('hashchange', route); route(); });
