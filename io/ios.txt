@@ -1,0 +1,402 @@
+PrologScript: 200 inputs and outputs, from real runs (npm run ios writes this file; npm test checks it).
+
+1. script([["add","s1","text",[37,43,0,"Hello there"],{}],["add","s1","line",[24,15,9,29],{"fill":"#e53935","width":12}],["add","s2","rect",[26,36,24,9],{"fill":"#e53935","width":6}],["add","box1","path",[[60,14],[46,9],[19,25],[15,9],[44,35]],{"fill":"none","width":1}],["toLayer","s1","layer1"],["group",["box1"],"g1"],["moveLayer","layer1","raise"]])
+   => {"outline":[["layer1",[]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[],"error":{"at":0,"message":"text: not a shape I can draw"}}
+2. script([["add","dot1","ellipse",[31,57,21,5],{}],["add","dot2","rect",[9,23,3,12],{"fill":"#e53935","width":6}],["add","dot3","path",[[10,18],[54,17],[8,39]],{"fill":"none","width":1}],["add","dot4","ellipse",[39,7,15,16],{"fill":"#81d4fa","width":2}],["select",["dot1"]],["move","dot3",15,-17]])
+   => {"outline":[["layer1",["dot1","dot2","dot3","dot4"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["dot1"],"shapes":[["dot1","ellipse",[31,57,21,5]],["dot2","rect",[9,23,3,12]],["dot3","path",[[25,1],[69,0],[23,22]]],["dot4","ellipse",[39,7,15,16]]]}
+3. hit([["add","dot1","path",[[5,9],[24,33]],{"fill":"#81d4fa","width":2}],["add","box1","text",[40,14,10,"Hi"],{"fill":"none","width":12}],["add","s1","ellipse",[2,47,12,7],{"fill":"#81d4fa","width":2}],["ungroup","a"],["addLayer","layer2","Middle"],["ungroup","a"]], -9, 43)
+   => {"top":null,"deep":null}
+4. bounds([["add","s1","rect",[26,53,20,11],{"fill":"#e53935","width":1}],["add","box1","line",[39,7,4,49],{"fill":"#81d4fa","width":2}],["remove","box1"],["add","s2","rect",[10,41,1,16],{"fill":"#81d4fa","width":2}],["select",["s1","s2"]],["restack","s2","lower"],["add","dot1","rect",[37,33,1,5],{}]], "s1")
+   => [26,53,20,11]
+5. menuKey([{"type":"item","label":"File","goal":"go(7)","key":"b"},{"type":"item","label":"Size","goal":"go(64)"},{"type":"sep"}], [], "tab")
+   => {"path":[]}
+6. menuChoose([{"type":"item","label":"Red","goal":"go(56)","key":"a","enabled":false}], [0])
+   => {"path":[]}
+7. shortcut([{"type":"item","label":"Red","goal":"go(68)"}], "z")
+   => null
+8. line(-6, -1, 3, -4)
+   => [[-6,-1],[-5,-1],[-4,-2],[-3,-2],[-2,-2],[-1,-3],[0,-3],[1,-3],[2,-4],[3,-4]]
+9. fill([[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]], 2, 0, 2)
+   => [[2,2,2,2,2,2],[2,2,2,2,2,2],[2,2,2,2,2,2],[2,2,2,2,2,2]]
+10. dot(7, 5, -1, 4, 1, "square")
+   => [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[1,0,0,0,0,0,0],[1,0,0,0,0,0,0]]
+11. cursor({"f":"blob","a":[]})
+   => {"error":"a pointer is a name (crosshair, move, ...), circle(R, Colour), cross(Size, Colour), glyph(Text) or svg(Text, X, Y)"}
+12. script([["add","box1","text",[35,24,20,"Hello there"],{}],["add","dot1","ellipse",[43,14,4,27],{"fill":"#81d4fa","width":6}],["group",["dot1","box1"],"g1"],["setLayer","layer1","shown",true]])
+   => {"outline":[["layer1",[["g1",["box1","dot1"]]]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","text",[35,24,20,"Hello there"]],["dot1","ellipse",[43,14,4,27]]]}
+13. script([["add","Bad","blob",[57],{"fill":"#e53935","width":6}],["add","dot1","poly",[[28,6],[24,55],[28,55],[60,37]],{"fill":"#e53935","width":6}],["add","box1","text",[55,2,10,"Hi"],{"fill":"#e53935","width":2}],["move","box1",17,-3],["restack","box1","lower"],["addLayer","layer2","Middle"],["add","s1","ellipse",[33,2,17,10],{"fill":"none","width":1}],["move","dot1",5,4],["move","dot1",12,2],["group",["box1"],"g1"],["select",["s1"]],["group",["s1"],"g2"]])
+   => {"outline":[["layer1",[]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[],"error":{"at":0,"message":"Bad: a name starts with a small letter"}}
+14. hit([["add","s1","rect",[5,38,30,28],{"fill":"#81d4fa","width":2}],["add","s2","blob",[21],{}],["add","dot1","ellipse",[50,38,5,1],{"fill":"#e53935","width":2}],["group",["dot1"],"g1"],["toLayer","g1","layer1"],["ungroup","g1"],["moveLayer","layer1","lower"],["toLayer","s1","layer1"],["remove","s1"]], 50, 38)
+   => {"top":"dot1","deep":"dot1"}
+15. bounds([["add","dot1","poly",[[59,17],[5,23]],{}],["add","box1","line",[43,55,45,5],{"fill":"none","width":1}],["add","s1","rect",[25,17,20,7],{"fill":"#e53935","width":6}],["moveLayer","layer1","raise"]], "box1")
+   => [43,5,2,50]
+16. menuKey([{"type":"item","label":"Colour","goal":"go(27)"}], [0], "tab")
+   => {"path":[0]}
+17. menuChoose([{"type":"item","label":"Size","goal":"go(44)"},{"type":"item","label":"Blue","goal":"go(5)","key":"z"},{"type":"item","label":"File","goal":"go(64)","enabled":false},{"type":"menu","label":"File","items":[{"type":"sep"},{"type":"item","label":"Edit","goal":"go(38)","key":"Z"},{"type":"item","label":"Undo","goal":"go(8)"}]}], [0])
+   => {"path":[],"run":"go(44)","closed":true}
+18. shortcut([{"type":"menu","label":"Blue","items":[{"type":"menu","label":"Warm","items":[{"type":"item","label":"Edit","goal":"go(77)","key":"Z"},{"type":"item","label":"File","goal":"go(19)"},{"type":"sep"},{"type":"item","label":"Colour","goal":"go(5)"}]},{"type":"sep"},{"type":"item","label":"Undo","goal":"go(97)","key":"z"},{"type":"menu","label":"Undo","items":[{"type":"sep"}],"enabled":false}]},{"type":"item","label":"Blue","goal":"go(29)","key":"b"},{"type":"item","label":"Warm","goal":"go(74)"},{"type":"sep"}], "b")
+   => "go(29)"
+19. line(-1, -1, 5, 3)
+   => [[-1,-1],[0,0],[1,0],[2,1],[3,2],[4,2],[5,3]]
+20. fill([[2,0],[2,0],[1,0],[1,0],[1,0]], -1, 1, 1)
+   => [[2,0],[2,0],[1,0],[1,0],[1,0]]
+21. dot(4, 6, -1, 0, 2, "square")
+   => [[1,0,0,0],[1,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
+22. cursor({"f":"svg","a":["<div width=\"2\" height=\"2\">",10,22]})
+   => {"error":"svg: an <svg> with width and height up to 128"}
+23. script([["add","s1","text",[12,32,20,"Hello there"],{"fill":"#e53935","width":6}],["add","box1","ellipse",[43,58,20,28],{}],["move","box1",12,0],["moveLayer","layer1","lower"],["moveLayer","layer1","raise"],["group",["box1"],"g1"],["ungroup","g1"],["ungroup","a"]])
+   => {"outline":[["layer1",["s1","box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","ellipse",[55,58,20,28]],["s1","text",[12,32,20,"Hello there"]]],"error":{"at":7,"message":"a isn't there"}}
+24. script([["add","dot1","path",[[54,40]],{"fill":"#81d4fa","width":2}],["add","box1","line",[10,45,10,31],{"fill":"none","width":2}],["add","box2","rect",[3,38,5,9],{"fill":"#81d4fa","width":6}],["move","box1",0,-8],["restack","box1","lower"],["remove","box2"],["add","box1","blob",[21],{"fill":"#81d4fa","width":1}],["add","s1","path",[[45,35],[45,13]],{}],["select",["box1"]],["addLayer","layer2","Top"],["select",["box1"]],["useLayer","layer1"]])
+   => {"outline":[["layer1",[]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[],"error":{"at":0,"message":"path: not a shape I can draw"}}
+25. hit([["add","s1","poly",[[16,28],[23,60],[30,25],[58,4]],{"fill":"#81d4fa","width":12}],["add","s2","poly",[[7,4],[35,7],[40,18],[1,21],[22,45]],{}],["useLayer","layer1"],["select",["s2"]],["moveLayer","layer1","lower"],["addLayer","layer2",""],["move","s1",10,6],["moveLayer","layer2","raise"],["select",["s1"]],["move","s2",-11,11]], 46, -4)
+   => {"top":null,"deep":null}
+26. bounds([["add","dot1","ellipse",[5,27,14,6],{}],["add","s1","text",[55,39,20,"Hi"],{"fill":"none","width":2}],["addLayer","layer2","Top"],["restack","dot1","back"]], "s1")
+   => [55,19,24,25]
+27. menuKey([{"type":"item","label":"Blue","goal":"go(65)"},{"type":"item","label":"Size","goal":"go(67)"},{"type":"menu","label":"Size","items":[{"type":"menu","label":"Red","items":[{"type":"item","label":"Size","goal":"go(85)"}]}]},{"type":"item","label":"File","goal":"go(72)"}], [], "right")
+   => {"path":[0]}
+28. menuChoose([{"type":"menu","label":"Colour","items":[{"type":"item","label":"Blue","goal":"go(67)","key":"z"},{"type":"menu","label":"Red","items":[{"type":"item","label":"Colour","goal":"go(10)","key":"Z"}]}]},{"type":"item","label":"Colour","goal":"go(90)"},{"type":"item","label":"Warm","goal":"go(91)"},{"type":"sep"}], [1])
+   => {"path":[],"run":"go(90)","closed":true}
+29. shortcut([{"type":"item","label":"Red","goal":"go(97)","key":"a"},{"type":"sep"}], "a")
+   => "go(97)"
+30. line(5, 5, 4, 2)
+   => [[5,5],[5,4],[4,3],[4,2]]
+31. fill([[0,0,1,0,1,2]], 1, 1, 0)
+   => [[0,0,1,0,1,2]]
+32. dot(3, 5, 5, 4, 3, "round")
+   => [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+33. cursor({"f":"glyph","a":["x",15,3]})
+   => {"w":32,"h":32,"hot":[15,3]}
+34. script([["add","s1","line",[33,31,48,11],{}],["add","box1","line",[23,55,21,26],{"fill":"#81d4fa","width":12}],["moveLayer","layer1","lower"],["restack","s1","raise"]])
+   => {"outline":[["layer1",["box1","s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","line",[23,55,21,26]],["s1","line",[33,31,48,11]]]}
+35. script([["add","dot1","path",[[34,54],[21,28],[11,25]],{"fill":"#e53935","width":1}],["add","dot2","line",[19,34,40,3],{}],["group",["dot1"],"g1"],["moveLayer","layer1","lower"],["restack","dot1","front"],["ungroup","g1"],["ungroup","a"],["add","dot3","rect",[8,47,23,4],{"fill":"#81d4fa","width":1}],["move","dot3",-8,3],["move","dot2",1,-2],["add","box1","path",[[50,21],[40,8],[54,2],[7,2],[47,24]],{}],["move","dot1",6,-3],["toLayer","box1","layer1"]])
+   => {"outline":[["layer1",["dot1","dot2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","path",[[34,54],[21,28],[11,25]]],["dot2","line",[19,34,40,3]]],"error":{"at":6,"message":"a isn't there"}}
+36. hit([["add","dot1","rect",[52,30,12,0],{}],["add","dot2","path",[[25,18]],{}],["add","s1","path",[[1,2],[59,19]],{"fill":"none","width":2}],["moveLayer","layer1","lower"],["move","s1",-14,1],["select",["s1"]],["select",["dot1"]],["restack","s1","front"],["toLayer","s1","layer1"],["select",["dot1"]],["select",["s1"]]], 61, 30)
+   => {"top":"dot1","deep":"dot1"}
+37. bounds([["add","box1","ellipse",[38,58,19,25],{}],["add","dot1","rect",[21,46,0,24],{"fill":"none","width":6}],["move","dot1",5,-7],["group",["dot1"],"g1"],["remove","nope"],["ungroup","g1"],["add","dot2","path",[[10,55],[21,38],[45,5]],{"fill":"none","width":2}]], "box1")
+   => [19,33,38,50]
+38. menuKey([{"type":"menu","label":"Edit","items":[{"type":"item","label":"Undo","goal":"go(34)"}]},{"type":"item","label":"Warm","goal":"go(85)"}], [1], "tab")
+   => {"path":[1]}
+39. menuChoose([{"type":"item","label":"Edit","goal":"go(13)"}], [0])
+   => {"path":[],"run":"go(13)","closed":true}
+40. shortcut([{"type":"menu","label":"Blue","items":[{"type":"sep"},{"type":"item","label":"Size","goal":"go(29)"},{"type":"menu","label":"Red","items":[{"type":"item","label":"Colour","goal":"go(71)","key":"Z","enabled":false},{"type":"item","label":"Blue","goal":"go(44)"}],"enabled":false},{"type":"item","label":"File","goal":"go(76)","key":"a","enabled":false}],"enabled":false},{"type":"item","label":"File","goal":"go(57)"}], "b")
+   => null
+41. line(3, -5, -1, 5)
+   => [[3,-5],[3,-4],[2,-3],[2,-2],[1,-1],[1,0],[1,1],[0,2],[0,3],[-1,4],[-1,5]]
+42. fill([[1,0,0,1,1,1],[0,0,1,0,1,0],[0,0,0,0,0,1]], 2, 1, 1)
+   => [[1,0,0,1,1,1],[0,0,1,0,1,0],[0,0,0,0,0,1]]
+43. dot(3, 4, 8, 1, 6, "round")
+   => [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+44. cursor({"f":"svg","a":["<div width=\"2\" height=\"2\">",15,12]})
+   => {"error":"svg: an <svg> with width and height up to 128"}
+45. script([["add","dot1","text",[53,46,20,"Hi"],{"fill":"none","width":12}],["add","dot2","rect",[57,21,21,16],{"fill":"#e53935","width":6}],["group",["dot1","dot2"],"g1"],["move","dot1",19,-1]])
+   => {"outline":[["layer1",[["g1",["dot1","dot2"]]]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","text",[72,45,20,"Hi"]],["dot2","rect",[57,21,21,16]]]}
+46. script([["add","box1","ellipse",[9,24,6,20],{"fill":"none","width":6}],["add","box2","poly",[[21,58],[48,32],[27,25],[48,39],[20,46]],{}],["addLayer","layer2","Middle"],["remove","box1"],["add","dot1","rect",[52,12,12,14],{}],["group",["box2"],"g1"]])
+   => {"outline":[["layer1",[["g1",["box2"]]]],["layer2",["dot1"]]],"layers":[["layer1","Layer 1",true,false],["layer2","Middle",true,false]],"active":"layer2","selected":[],"shapes":[["box2","poly",[[21,58],[48,32],[27,25],[48,39],[20,46]]],["dot1","rect",[52,12,12,14]]]}
+47. hit([["add","dot1","ellipse",[47,10,28,8],{}],["add","dot2","ellipse",[49,13,8,17],{"fill":"#e53935","width":1}],["add","s1","rect",[15,35,27,22],{}],["add","dot3","line",[25,17,18,54],{"fill":"#e53935","width":1}],["restack","s1","front"],["add","s2","rect",[37,46,2,30],{"fill":"none","width":2}],["restack","dot2","lower"],["moveLayer","layer1","lower"],["addLayer","layer2","Middle"],["restack","dot3","back"]], 22, 45)
+   => {"top":"dot3","deep":"dot3"}
+48. bounds([["add","box1","path",[[2,3],[52,59],[58,48],[58,14],[36,37]],{"fill":"#81d4fa","width":2}],["add","s1","poly",[[41,59],[7,38],[10,44],[40,43]],{"fill":"#e53935","width":6}]], "box1")
+   => [2,3,56,56]
+49. menuKey([{"type":"item","label":"File","goal":"go(88)","key":"Z"}], [], "down")
+   => {"path":[0]}
+50. menuChoose([{"type":"item","label":"Colour","goal":"go(16)","key":"b"},{"type":"item","label":"Colour","goal":"go(38)"},{"type":"item","label":"Red","goal":"go(92)"}], [2])
+   => {"path":[],"run":"go(92)","closed":true}
+51. shortcut([{"type":"item","label":"Size","goal":"go(16)","key":"Z"},{"type":"item","label":"Undo","goal":"go(50)"},{"type":"item","label":"Colour","goal":"go(50)"}], "a")
+   => null
+52. line(-6, -2, 4, 5)
+   => [[-6,-2],[-5,-1],[-4,-1],[-3,0],[-2,1],[-1,2],[0,2],[1,3],[2,4],[3,4],[4,5]]
+53. fill([[1,0]], 0, 0, 2)
+   => [[2,0]]
+54. dot(5, 6, -1, 3, 1, "round")
+   => [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+55. cursor({"f":"cross","a":[3,"blue"]})
+   => {"error":"cross size: 4 to 64"}
+56. script([["add","s1","rect",[39,20,21,2],{"fill":"none","width":12}],["add","dot1","poly",[[41,53],[56,38]],{"fill":"#e53935","width":6}],["restack","nope","raise"],["moveLayer","layer1","raise"],["add","dot2","path",[[28,45],[52,40],[45,14],[29,51]],{}],["remove","dot1"],["group",["s1","dot2"],"g1"],["add","box1","rect",[20,57,0,28],{"fill":"#e53935","width":12}]])
+   => {"outline":[["layer1",["s1","dot1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","poly",[[41,53],[56,38]]],["s1","rect",[39,20,21,2]]],"error":{"at":2,"message":"nope isn't there"}}
+57. script([["add","dot1","path",[[5,32],[24,5],[22,48],[14,13],[11,20]],{}],["add","box1","line",[38,34,18,36],{"fill":"none","width":2}],["remove","dot1"],["add","s1","path",[[31,56],[57,33],[37,1],[43,55]],{}],["moveLayer","layer1","lower"],["restack","s1","front"],["restack","s1","raise"],["add","s2","ellipse",[26,31,0,3],{"fill":"#e53935","width":2}],["restack","s2","raise"],["add","dot1","path",[[29,2],[34,9],[1,58]],{"fill":"#e53935","width":12}],["select",["nope"]]])
+   => {"outline":[["layer1",["box1","s1","s2","dot1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","line",[38,34,18,36]],["dot1","path",[[29,2],[34,9],[1,58]]],["s1","path",[[31,56],[57,33],[37,1],[43,55]]],["s2","ellipse",[26,31,0,3]]],"error":{"at":10,"message":"nope isn't there"}}
+58. hit([["add","s1","rect",[42,31,-5,4],{"fill":"#81d4fa","width":2}],["add","Bad","path",[[47,2]],{}],["add","box1","line",[9,21,49,37],{"fill":"#e53935","width":1}],["add","s1","path",[[3,52],[38,11],[2,57],[0,39],[45,41]],{}],["add","dot1","ellipse",[39,10,5,2],{"fill":"#e53935","width":2}],["group",["dot1"],"g1"],["select",["s1","dot1"]]], 12, 19)
+   => {"top":"box1","deep":"box1"}
+59. bounds([["add","dot1","rect",[46,6,20,25],{}],["add","s1","poly",[[26,51],[19,42]],{"fill":"#e53935","width":1}],["group",["s1","a"],"g1"]], "s1")
+   => [19,42,7,9]
+60. menuKey([{"type":"item","label":"File","goal":"go(48)"},{"type":"menu","label":"Size","items":[{"type":"item","label":"File","goal":"go(31)"}]},{"type":"item","label":"Undo","goal":"go(32)","enabled":false}], [2], "down")
+   => {"path":[0]}
+61. menuChoose([{"type":"menu","label":"Warm","items":[{"type":"item","label":"File","goal":"go(31)"},{"type":"item","label":"Size","goal":"go(67)"},{"type":"item","label":"File","goal":"go(78)"}],"enabled":false}], [0])
+   => {"path":[]}
+62. shortcut([{"type":"item","label":"Edit","goal":"go(54)"},{"type":"item","label":"Red","goal":"go(55)","key":"b"},{"type":"sep"},{"type":"menu","label":"Warm","items":[{"type":"item","label":"Blue","goal":"go(21)","key":"z"}]}], "b")
+   => "go(55)"
+63. line(-2, -6, 5, 5)
+   => [[-2,-6],[-1,-5],[-1,-4],[0,-3],[1,-2],[1,-1],[2,0],[2,1],[3,2],[4,3],[4,4],[5,5]]
+64. fill([[0,1],[1,1],[0,0],[1,1]], 0, 0, 0)
+   => [[0,1],[1,1],[0,0],[1,1]]
+65. dot(9, 7, 2, 4, 4, "round")
+   => [[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,1,0,0,0,0,0,0],[0,1,1,1,0,0,0,0,0],[1,1,1,1,1,0,0,0,0],[0,1,1,1,0,0,0,0,0],[0,0,1,0,0,0,0,0,0]]
+66. cursor({"f":"svg","a":["<svg width=\"20\" height=\"20\"><circle r=\"5\"/></svg>",5,20]})
+   => {"w":20,"h":20,"hot":[5,20]}
+67. script([["add","s1","poly",[[14,12],[60,3]],{"fill":"#e53935","width":2}],["add","s2","ellipse",[2,40,21,5],{}],["add","box1","rect",[24,13,5,21],{"fill":"none","width":2}],["add","box2","rect",[15,36,-5,4],{}],["restack","box1","front"],["restack","box1","raise"],["add","dot1","path",[[19,41],[37,30],[13,37],[46,1]],{}],["select",["nope"]],["ungroup","a"]])
+   => {"outline":[["layer1",["s1","s2","box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","rect",[24,13,5,21]],["s1","poly",[[14,12],[60,3]]],["s2","ellipse",[2,40,21,5]]],"error":{"at":3,"message":"rect: not a shape I can draw"}}
+68. script([["add","box1","path",[[28,11],[40,14],[57,1],[6,12],[43,13]],{}],["add","box2","rect",[35,53,17,17],{}],["add","box1","poly",[[36,37]],{"fill":"none","width":6}],["remove","box1"],["add","box1","rect",[49,4,15,21],{}],["group",["box2"],"g1"],["group",["g1","box1"],"g2"],["setLayer","layer1","shown",true],["move","box2",5,15],["add","dot1","ellipse",[3,16,18,4],{"fill":"#e53935","width":1}],["ungroup","g2"],["group",["box1"],"g2"],["select",["box1"]],["restack","dot1","raise"]])
+   => {"outline":[["layer1",["box1","box2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","path",[[28,11],[40,14],[57,1],[6,12],[43,13]]],["box2","rect",[35,53,17,17]]],"error":{"at":2,"message":"box1 is already there"}}
+69. hit([["add","s1","text",[57,46,10,"Hello there"],{"fill":"#81d4fa","width":6}],["add","box1","poly",[[20,40],[5,4],[37,4]],{}],["toLayer","s1","layer1"],["setLayer","layer1","locked",false],["add","dot1","blob",[59],{"fill":"none","width":12}],["add","dot1","rect",[17,39,25,2],{"fill":"#81d4fa","width":12}]], 13, 0)
+   => {"top":"box1","deep":"box1"}
+70. bounds([["add","s1","rect",[55,49,27,10],{"fill":"#e53935","width":12}],["add","dot1","poly",[[60,27],[27,6],[49,53],[39,6]],{"fill":"#81d4fa","width":2}],["add","box1","line",[55,59,43,44],{"fill":"#e53935","width":6}],["add","box2","ellipse",[5,9,7,10],{"fill":"none","width":1}]], "s1")
+   => [55,49,27,10]
+71. menuKey([{"type":"menu","label":"File","items":[{"type":"item","label":"Colour","goal":"go(17)"},{"type":"item","label":"Colour","goal":"go(6)"},{"type":"item","label":"File","goal":"go(36)"},{"type":"item","label":"Edit","goal":"go(70)","key":"z"}]},{"type":"menu","label":"Edit","items":[{"type":"item","label":"Red","goal":"go(12)"},{"type":"item","label":"Colour","goal":"go(15)"}]},{"type":"item","label":"Blue","goal":"go(18)","key":"b"},{"type":"sep"}], [0,0], "escape")
+   => {"path":[0]}
+72. menuChoose([{"type":"item","label":"Undo","goal":"go(4)"},{"type":"item","label":"Undo","goal":"go(95)","key":"z","enabled":false},{"type":"item","label":"Blue","goal":"go(16)","key":"b"}], [2])
+   => {"path":[],"run":"go(16)","closed":true}
+73. shortcut([{"type":"item","label":"Colour","goal":"go(78)"}], "A")
+   => null
+74. line(-2, -2, 3, 3)
+   => [[-2,-2],[-1,-1],[0,0],[1,1],[2,2],[3,3]]
+75. fill([[0,0],[0,0],[0,0],[0,0]], 1, 3, 0)
+   => [[0,0],[0,0],[0,0],[0,0]]
+76. dot(6, 6, 3, 0, 3, "square")
+   => [[0,1,1,1,1,1],[0,1,1,1,1,1],[0,1,1,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+77. cursor({"f":"svg","a":["<svg width=\"200\" height=\"20\"></svg>",11,13]})
+   => {"error":"svg: an <svg> with width and height up to 128"}
+78. script([["add","box1","ellipse",[31,13,27,18],{"fill":"none","width":1}],["add","s1","path",[[15,57],[50,35],[33,12],[43,16],[17,54]],{}],["toLayer","box1","layer1"],["useLayer","layer1"],["add","s2","ellipse",[20,25,21,30],{}],["add","dot1","text",[38,7,20,"Hello there"],{}],["setLayer","layer1","shown",false],["restack","s1","back"]])
+   => {"outline":[["layer1",["s1","box1","s2","dot1"]]],"layers":[["layer1","Layer 1",false,false]],"active":"layer1","selected":[],"shapes":[["box1","ellipse",[31,13,27,18]],["dot1","text",[38,7,20,"Hello there"]],["s1","path",[[15,57],[50,35],[33,12],[43,16],[17,54]]],["s2","ellipse",[20,25,21,30]]]}
+79. script([["add","dot1","ellipse",[8,36,6,3],{}],["add","dot1","path",[[56,4]],{"fill":"#81d4fa","width":6}],["add","dot2","rect",[56,13,13,12],{}],["add","s1","rect",[30,20,4,12],{"fill":"#81d4fa","width":2}],["moveLayer","layer1","lower"],["move","dot2",20,-12],["group",["dot2","s1"],"g1"],["select",[]],["add","box1","path",[[25,5],[7,26],[15,44],[47,5],[2,52]],{"fill":"#81d4fa","width":12}],["add","dot3","ellipse",[7,59,22,17],{}],["remove","s1"]])
+   => {"outline":[["layer1",["dot1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","ellipse",[8,36,6,3]]],"error":{"at":1,"message":"dot1 is already there"}}
+80. hit([["add","box1","line",[10,1,35,12],{}],["add","s1","line",[20,51,37,30],{}],["select",["s1","box1"]],["group",["s1"],"g1"],["add","s2","rect",[19,19,13,2],{"fill":"#e53935","width":12}]], 33, 5)
+   => {"top":null,"deep":null}
+81. bounds([["add","s1","line",[22,35,19,22],{}],["add","s2","rect",[6,35,10,29],{"fill":"#e53935","width":6}],["move","s1",-16,-17],["add","s3","path",[[57,47],[40,52]],{}]], "s3")
+   => [40,47,17,5]
+82. menuKey([{"type":"item","label":"Red","goal":"go(25)","enabled":false},{"type":"item","label":"Blue","goal":"go(29)"},{"type":"item","label":"Red","goal":"go(63)","key":"a"}], [2], "enter")
+   => {"path":[],"run":"go(63)","closed":true}
+83. menuChoose([{"type":"item","label":"Warm","goal":"go(50)","key":"b"},{"type":"item","label":"Size","goal":"go(17)"},{"type":"sep"},{"type":"item","label":"File","goal":"go(13)","key":"b"}], [0])
+   => {"path":[],"run":"go(50)","closed":true}
+84. shortcut([{"type":"item","label":"Colour","goal":"go(53)"},{"type":"sep"}], "b")
+   => null
+85. line(4, -2, -5, -6)
+   => [[4,-2],[3,-2],[2,-3],[1,-3],[0,-4],[-1,-4],[-2,-5],[-3,-5],[-4,-6],[-5,-6]]
+86. fill([[2,2,2,2]], 2, 1, 1)
+   => [[2,2,2,2]]
+87. dot(7, 7, 0, 0, 7, "round")
+   => [[1,1,1,1,0,0,0],[1,1,1,1,0,0,0],[1,1,1,0,0,0,0],[1,1,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+88. cursor({"f":"circle","a":[0,"#ff8800"]})
+   => {"error":"circle radius: 1 to 60"}
+89. script([["add","dot1","poly",[[32,44],[24,47]],{"fill":"none","width":6}],["add","dot2","text",[13,2,10,"Hello there"],{}],["add","s1","path",[[32,3],[51,27],[39,27],[55,41]],{"fill":"#81d4fa","width":12}]])
+   => {"outline":[["layer1",["dot1","dot2","s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","poly",[[32,44],[24,47]]],["dot2","text",[13,2,10,"Hello there"]],["s1","path",[[32,3],[51,27],[39,27],[55,41]]]]}
+90. script([["add","dot1","rect",[40,18,2,27],{}],["add","box1","text",[57,34,20,"Hello there"],{}],["group",["dot1","box1"],"g1"],["moveLayer","layer1","lower"],["move","box1",-13,11],["add","dot2","line",[47,40,34,27],{}],["remove","dot1"],["restack","box1","front"],["moveLayer","layer1","raise"],["add","box2","rect",[54,4,26,27],{"fill":"#81d4fa","width":2}],["group",["box1"],"g2"]])
+   => {"outline":[["layer1",[["g1",[["g2",["box1"]]]],"dot2","box2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","text",[44,45,20,"Hello there"]],["box2","rect",[54,4,26,27]],["dot2","line",[47,40,34,27]]]}
+91. hit([["add","Bad","blob",[47],{"fill":"none","width":6}],["add","s1","rect",[1,47,25,4],{}],["add","s2","poly",[[0,54],[2,55]],{"fill":"#81d4fa","width":2}],["move","s2",-16,-11],["select",["s2"]],["ungroup","a"],["useLayer","layer1"],["useLayer","layer1"],["remove","s2"]], 24, 50)
+   => {"top":"s1","deep":"s1"}
+92. bounds([["add","s1","path",[[29,5],[15,13],[23,24],[5,28]],{"fill":"#81d4fa","width":6}],["add","s2","path",[[6,20],[53,20],[44,17],[16,31]],{"fill":"none","width":1}],["group",["s1"],"g1"],["select",["s2","s1"]],["select",["s1","g1"]]], "g1")
+   => [5,5,24,23]
+93. menuKey([{"type":"item","label":"File","goal":"go(94)","key":"z"},{"type":"menu","label":"Warm","items":[{"type":"sep"},{"type":"item","label":"Warm","goal":"go(31)","key":"z"},{"type":"sep"},{"type":"menu","label":"Warm","items":[{"type":"item","label":"Warm","goal":"go(95)"},{"type":"item","label":"Blue","goal":"go(56)","key":"b","enabled":false},{"type":"sep"},{"type":"item","label":"Colour","goal":"go(55)","key":"z"}]}]},{"type":"item","label":"Size","goal":"go(19)"}], [1,1], "right")
+   => {"path":[1,1]}
+94. menuChoose([{"type":"item","label":"Colour","goal":"go(2)","key":"b"}], [0])
+   => {"path":[],"run":"go(2)","closed":true}
+95. shortcut([{"type":"sep"},{"type":"item","label":"Edit","goal":"go(39)"},{"type":"menu","label":"Red","items":[{"type":"item","label":"File","goal":"go(76)","key":"b"},{"type":"item","label":"Edit","goal":"go(45)","key":"z"},{"type":"item","label":"Red","goal":"go(56)","enabled":false}]}], "q")
+   => null
+96. line(-1, 6, 6, -2)
+   => [[-1,6],[0,5],[1,4],[2,3],[3,2],[3,1],[4,0],[5,-1],[6,-2]]
+97. fill([[0],[1],[1],[0],[0]], -1, 4, 1)
+   => [[0],[1],[1],[0],[0]]
+98. dot(9, 5, 8, 1, 5, "square")
+   => [[0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,1,1],[0,0,0,0,0,1,1,1,1]]
+99. cursor({"f":"cross","a":[3,"#123456"]})
+   => {"error":"cross size: 4 to 64"}
+100. script([["add","dot1","ellipse",[11,6,9,4],{"fill":"#81d4fa","width":6}],["add","s1","path",[[15,45],[54,4],[60,49]],{"fill":"none","width":6}],["move","s1",15,-16],["restack","dot1","lower"],["add","s2","rect",[17,25,20,25],{}]])
+   => {"outline":[["layer1",["dot1","s1","s2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","ellipse",[11,6,9,4]],["s1","path",[[30,29],[69,-12],[75,33]]],["s2","rect",[17,25,20,25]]]}
+101. script([["add","dot1","rect",[46,22,13,14],{"fill":"none","width":6}],["add","box1","path",[[25,27],[5,47]],{"fill":"#81d4fa","width":12}],["select",["dot1","box1"]],["select",["box1","dot1"]],["move","box1",13,-18],["move","box1",-11,-8],["ungroup","a"],["select",["dot1"]],["setLayer","layer1","locked",false]])
+   => {"outline":[["layer1",["dot1","box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["box1","dot1"],"shapes":[["box1","path",[[27,1],[7,21]]],["dot1","rect",[46,22,13,14]]],"error":{"at":6,"message":"a isn't there"}}
+102. hit([["add","dot1","ellipse",[43,48,16,18],{"fill":"#81d4fa","width":6}],["add","dot2","path",[[27,43],[21,4],[25,29],[54,34]],{"fill":"none","width":6}],["select",["nope"]],["add","s1","path",[[57,18],[38,3],[32,51]],{}],["add","dot3","poly",[[14,31],[21,29],[36,7],[34,39]],{}],["useLayer","layer1"],["toLayer","dot3","layer1"],["select",[]]], 32, 12)
+   => {"top":"dot3","deep":"dot3"}
+103. bounds([["add","9x","blob",[10],{"fill":"none","width":1}],["add","s1","rect",[28,58,0,20],{}],["add","s2","line",[9,17,36,21],{"fill":"none","width":2}],["ungroup","a"],["add","box1","line",[10,42,9,1],{"fill":"none","width":1}],["move","s1",10,5],["restack","s1","front"],["addLayer","layer2","Middle"],["add","box2","poly",[[27,53],[41,5]],{}]], "s2")
+   => [9,17,27,4]
+104. menuKey([{"type":"item","label":"Red","goal":"go(43)","key":"Z"},{"type":"item","label":"Warm","goal":"go(30)","key":"a"},{"type":"item","label":"Size","goal":"go(1)","key":"a"}], [0], "escape")
+   => {"path":[],"closed":true}
+105. menuChoose([{"type":"menu","label":"Size","items":[{"type":"item","label":"Blue","goal":"go(40)","enabled":false}]},{"type":"item","label":"Red","goal":"go(79)","enabled":false}], [0])
+   => {"path":[0]}
+106. shortcut([{"type":"menu","label":"Blue","items":[{"type":"item","label":"Red","goal":"go(54)"}]},{"type":"sep"},{"type":"item","label":"File","goal":"go(67)"},{"type":"item","label":"Edit","goal":"go(73)","enabled":false}], "z")
+   => null
+107. line(-3, -6, -5, -5)
+   => [[-3,-6],[-4,-5],[-5,-5]]
+108. fill([[2]], 0, -1, 1)
+   => [[2]]
+109. dot(3, 6, 0, 6, 6, "square")
+   => [[0,0,0],[0,0,0],[0,0,0],[1,1,1],[1,1,1],[1,1,1]]
+110. cursor({"f":"cross","a":[64,"#123456"]})
+   => {"w":66,"h":66,"hot":[33,33]}
+111. script([["add","s1","path",[[12,33],[44,8],[25,51],[3,55]],{"fill":"#e53935","width":1}],["add","dot1","ellipse",[41,11,8,30],{"fill":"none","width":1}],["group",["dot1"],"g1"],["move","g1",0,-14],["add","s2","rect",[47,28,0,7],{"fill":"#e53935","width":1}],["toLayer","g1","layer1"],["add","dot2","text",[2,10,20,"Hello there"],{}],["toLayer","dot2","layer1"],["add","s3","ellipse",[38,55,29,28],{}]])
+   => {"outline":[["layer1",["s1",["g1",["dot1"]],"s2","dot2","s3"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","ellipse",[41,-3,8,30]],["dot2","text",[2,10,20,"Hello there"]],["s1","path",[[12,33],[44,8],[25,51],[3,55]]],["s2","rect",[47,28,0,7]],["s3","ellipse",[38,55,29,28]]]}
+112. script([["add","box1","rect",[30,44,27,28],{}],["add","box2","line",[25,31,49,53],{}],["useLayer","layer1"],["move","nope",17,14],["ungroup","a"],["select",["box1"]],["toLayer","box2","layer1"],["move","box2",-7,8],["select",["box1","box2"]],["remove","box2"],["add","box2","path",[[3,16],[39,30]],{}],["move","box1",-18,-4],["add","s1","ellipse",[60,34,9,5],{}]])
+   => {"outline":[["layer1",["box1","box2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","rect",[30,44,27,28]],["box2","line",[25,31,49,53]]],"error":{"at":3,"message":"nope isn't there"}}
+113. hit([["add","s1","rect",[15,11,7,24],{}],["add","dot1","path",[[54,33],[22,18],[13,23],[9,12],[6,5]],{"fill":"none","width":12}],["moveLayer","layer1","raise"],["restack","s1","lower"],["add","s2","poly",[[14,4],[57,24],[10,22]],{"fill":"#e53935","width":2}],["add","box1","poly",[[32,6],[40,18]],{}],["useLayer","layer1"],["add","dot2","path",[[46,32],[34,27],[51,47],[37,12],[27,52]],{"fill":"none","width":1}],["restack","dot2","front"]], 46, 50)
+   => {"top":null,"deep":null}
+114. bounds([["add","box1","rect",[5,30,30,0],{"fill":"#e53935","width":12}],["add","s1","ellipse",[5,23,16,14],{"fill":"#e53935","width":6}],["remove","box1"],["add","dot1","poly",[[50,23],[30,60]],{"fill":"none","width":2}]], "s1")
+   => [-11,9,32,28]
+115. menuKey([{"type":"sep"},{"type":"item","label":"Warm","goal":"go(22)"}], [0], "right")
+   => {"path":[0]}
+116. menuChoose([{"type":"menu","label":"Undo","items":[{"type":"item","label":"Size","goal":"go(55)","enabled":false},{"type":"item","label":"Edit","goal":"go(82)"},{"type":"item","label":"Edit","goal":"go(92)"},{"type":"item","label":"Edit","goal":"go(58)"}]},{"type":"menu","label":"File","items":[{"type":"item","label":"Warm","goal":"go(2)","key":"Z"},{"type":"item","label":"Red","goal":"go(5)","key":"z","enabled":false}]},{"type":"menu","label":"Red","items":[{"type":"item","label":"Edit","goal":"go(84)"}],"enabled":false}], [0])
+   => {"path":[0,1]}
+117. shortcut([{"type":"item","label":"Warm","goal":"go(72)","enabled":false},{"type":"item","label":"Warm","goal":"go(4)","key":"z"},{"type":"item","label":"Colour","goal":"go(6)"}], "a")
+   => null
+118. line(5, 5, -5, 1)
+   => [[5,5],[4,5],[3,4],[2,4],[1,3],[0,3],[-1,3],[-2,2],[-3,2],[-4,1],[-5,1]]
+119. fill([[0,2,1,2,0,1],[0,0,2,0,0,0],[0,2,0,2,2,2],[1,2,0,1,0,2]], 2, 3, 2)
+   => [[0,2,1,2,0,1],[0,0,2,0,0,0],[0,2,2,2,2,2],[1,2,2,1,0,2]]
+120. dot(6, 3, 3, 1, 2, "round")
+   => [[0,0,0,1,0,0],[0,0,1,1,1,0],[0,0,0,1,0,0]]
+121. cursor({"f":"blob","a":[]})
+   => {"error":"a pointer is a name (crosshair, move, ...), circle(R, Colour), cross(Size, Colour), glyph(Text) or svg(Text, X, Y)"}
+122. script([["add","dot1","rect",[16,20,0,13],{"fill":"none","width":2}],["add","s1","path",[[58,45],[39,6],[3,10],[24,38],[46,31]],{"fill":"none","width":2}],["ungroup","a"]])
+   => {"outline":[["layer1",["dot1","s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","rect",[16,20,0,13]],["s1","path",[[58,45],[39,6],[3,10],[24,38],[46,31]]]],"error":{"at":2,"message":"a isn't there"}}
+123. script([["add","dot1","path",[[45,9],[36,30]],{"fill":"#e53935","width":1}],["add","s1","text",[13,21,10,"Hi"],{}],["select",[]],["add","dot2","rect",[23,54,6,20],{"fill":"#e53935","width":12}],["move","dot1",19,-8],["add","s2","poly",[[57,24],[26,54],[15,56]],{"fill":"none","width":12}],["moveLayer","layer1","lower"],["select",["s1","dot1"]],["group",["s2","s1"],"g1"]])
+   => {"outline":[["layer1",["dot1","dot2",["g1",["s1","s2"]]]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["dot1"],"shapes":[["dot1","path",[[64,1],[55,22]]],["dot2","rect",[23,54,6,20]],["s1","text",[13,21,10,"Hi"]],["s2","poly",[[57,24],[26,54],[15,56]]]]}
+124. hit([["add","dot1","line",[12,48,51,16],{"fill":"none","width":6}],["add","s1","poly",[[18,25],[31,10],[44,17],[48,48]],{}],["restack","dot1","raise"],["restack","dot1","lower"],["addLayer","layer2",""],["move","dot1",-11,17],["restack","dot1","lower"],["add","s2","path",[[8,4],[0,38],[22,54],[43,5],[0,38]],{"fill":"#e53935","width":6}],["restack","dot1","lower"]], 33, 6)
+   => {"top":"s2","deep":"s2"}
+125. bounds([["add","s1","ellipse",[44,25,29,4],{"fill":"#e53935","width":6}],["add","box1","rect",[27,11,4,25],{"fill":"none","width":1}],["move","box1",-5,-17],["moveLayer","layer1","lower"],["add","box2","rect",[11,15,28,26],{"fill":"#e53935","width":1}],["add","box3","line",[47,27,15,18],{"fill":"none","width":1}],["add","box4","rect",[21,33,6,14],{}]], "box3")
+   => [15,18,32,9]
+126. menuKey([{"type":"item","label":"Colour","goal":"go(32)","key":"b"}], [], "tab")
+   => {"path":[]}
+127. menuChoose([{"type":"menu","label":"File","items":[{"type":"menu","label":"Blue","items":[{"type":"item","label":"Red","goal":"go(59)","key":"a"},{"type":"item","label":"Size","goal":"go(80)","key":"a"}]},{"type":"item","label":"Colour","goal":"go(50)"},{"type":"sep"}]},{"type":"item","label":"File","goal":"go(32)","key":"z"},{"type":"item","label":"Undo","goal":"go(60)"},{"type":"item","label":"Colour","goal":"go(1)"}], [3])
+   => {"path":[],"run":"go(1)","closed":true}
+128. shortcut([{"type":"menu","label":"Colour","items":[{"type":"item","label":"Red","goal":"go(9)"}]},{"type":"item","label":"Size","goal":"go(74)","key":"a"},{"type":"item","label":"Red","goal":"go(26)"}], "z")
+   => null
+129. line(6, 2, 0, -3)
+   => [[6,2],[5,1],[4,0],[3,-1],[2,-1],[1,-2],[0,-3]]
+130. fill([[2],[1],[0],[2]], 1, 1, 1)
+   => [[2],[1],[0],[2]]
+131. dot(8, 7, 4, 3, 7, "round")
+   => [[0,0,0,1,1,1,0,0],[0,0,1,1,1,1,1,0],[0,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,1,1,1,1,1,1,1],[0,0,1,1,1,1,1,0],[0,0,0,1,1,1,0,0]]
+132. cursor("none")
+   => {"w":0,"h":0,"hot":[0,0]}
+133. script([["add","dot1","line",[12,12,38,60],{}],["add","box1","ellipse",[34,16,23,20],{}],["useLayer","layer1"],["select",["box1"]]])
+   => {"outline":[["layer1",["dot1","box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["box1"],"shapes":[["box1","ellipse",[34,16,23,20]],["dot1","line",[12,12,38,60]]]}
+134. script([["add","dot1","poly",[[9,19],[45,38],[57,52],[32,59],[19,18]],{}],["add","s1","path",[[6,17],[42,48],[33,52]],{"fill":"#81d4fa","width":6}],["remove","dot1"],["add","s2","rect",[41,9,27,28],{}],["toLayer","s1","layer1"],["ungroup","a"],["select",["s1"]],["select",["s1","s2"]],["group",["s1"],"g1"],["move","s2",14,12],["add","box1","rect",[12,20,27,17],{"fill":"#e53935","width":12}]])
+   => {"outline":[["layer1",["s1","s2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["s1","path",[[6,17],[42,48],[33,52]]],["s2","rect",[41,9,27,28]]],"error":{"at":5,"message":"a isn't there"}}
+135. hit([["add","s1","rect",[50,56,15,3],{}],["add","s2","line",[44,45,19,60],{}],["add","dot1","poly",[[56,43],[20,8],[33,49],[46,21],[24,19]],{}],["addLayer","Top",""],["add","s3","ellipse",[24,49,30,30],{}],["ungroup","a"],["add","s4","path",[[43,2],[56,44],[45,37],[28,14],[16,50]],{}],["ungroup","a"],["group",["s4"],"g1"],["add","box1","poly",[[38,41],[43,9],[23,5]],{"fill":"#81d4fa","width":6}],["ungroup","g1"]], 58, 59)
+   => {"top":"s1","deep":"s1"}
+136. bounds([["add","s1","path",[[38,3],[40,9]],{"fill":"none","width":6}],["add","box1","poly",[[29,23],[38,29],[41,39]],{"fill":"#e53935","width":2}],["add","box2","rect",[4,29,20,12],{}]], "s1")
+   => [38,3,2,6]
+137. menuKey([{"type":"item","label":"Warm","goal":"go(51)"},{"type":"item","label":"Warm","goal":"go(50)","key":"a"},{"type":"item","label":"Blue","goal":"go(30)"}], [2], "left")
+   => {"path":[2]}
+138. menuChoose([{"type":"sep"},{"type":"item","label":"Red","goal":"go(84)"},{"type":"item","label":"Red","goal":"go(69)"},{"type":"sep"}], [0])
+   => {"path":[]}
+139. shortcut([{"type":"item","label":"Undo","goal":"go(69)"},{"type":"item","label":"Red","goal":"go(57)"},{"type":"item","label":"File","goal":"go(44)"},{"type":"item","label":"Edit","goal":"go(81)"}], "a")
+   => null
+140. line(3, -3, -2, -1)
+   => [[3,-3],[2,-3],[1,-2],[0,-2],[-1,-1],[-2,-1]]
+141. fill([[0,0],[0,0],[0,0],[0,0]], 2, 4, 0)
+   => [[0,0],[0,0],[0,0],[0,0]]
+142. dot(4, 3, 3, 4, 5, "round")
+   => [[0,0,0,0],[0,0,0,0],[0,0,1,1]]
+143. cursor({"f":"blob","a":[]})
+   => {"error":"a pointer is a name (crosshair, move, ...), circle(R, Colour), cross(Size, Colour), glyph(Text) or svg(Text, X, Y)"}
+144. script([["add","box1","poly",[[5,14],[60,3],[24,15],[50,29]],{}],["add","box2","rect",[60,51,1,9],{"fill":"#81d4fa","width":12}],["restack","box1","lower"],["ungroup","a"],["addLayer","layer2","Middle"],["ungroup","a"],["ungroup","a"]])
+   => {"outline":[["layer1",["box1","box2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","poly",[[5,14],[60,3],[24,15],[50,29]]],["box2","rect",[60,51,1,9]]],"error":{"at":3,"message":"a isn't there"}}
+145. script([["add","box1","path",[[29,31],[20,58],[8,9],[9,38]],{"fill":"none","width":12}],["add","box2","path",[[31,15],[29,15],[41,0]],{}],["move","box1",-17,11],["useLayer","layer1"],["restack","box1","back"],["restack","box2","raise"],["addLayer","layer2","Middle"],["group",["box2"],"g1"],["group",["g1"],"g2"],["select",[]]])
+   => {"outline":[["layer1",["box1",["g2",[["g1",["box2"]]]]]],["layer2",[]]],"layers":[["layer1","Layer 1",true,false],["layer2","Middle",true,false]],"active":"layer2","selected":[],"shapes":[["box1","path",[[12,42],[3,69],[-9,20],[-8,49]]],["box2","path",[[31,15],[29,15],[41,0]]]]}
+146. hit([["add","s1","line",[56,60,32,1],{"fill":"#e53935","width":12}],["add","s2","poly",[[40,19],[34,39],[43,53]],{"fill":"none","width":12}],["add","s3","text",[49,21,10,"Hi"],{}],["moveLayer","layer1","raise"],["moveLayer","layer1","lower"],["group",["s1"],"g1"],["addLayer","layer2","Top"],["ungroup","g1"]], 38, 32)
+   => {"top":"s2","deep":"s2"}
+147. bounds([["add","box1","line",[8,40,7,59],{"fill":"#e53935","width":6}],["add","s1","poly",[[9,58],[32,10]],{"fill":"#e53935","width":2}],["restack","box1","front"],["add","box2","poly",[[9,13],[59,24],[22,22]],{"fill":"none","width":6}],["setLayer","layer1","locked",false],["select",["box1","box2"]],["select",[]],["ungroup","a"]], "box2")
+   => [9,13,50,11]
+148. menuKey([{"type":"sep"},{"type":"menu","label":"Undo","items":[{"type":"item","label":"File","goal":"go(13)"},{"type":"item","label":"Edit","goal":"go(13)"}]},{"type":"menu","label":"Red","items":[{"type":"item","label":"Warm","goal":"go(45)","enabled":false},{"type":"item","label":"Size","goal":"go(17)"}]},{"type":"menu","label":"Edit","items":[{"type":"item","label":"Blue","goal":"go(65)"}]}], [], "left")
+   => {"path":[]}
+149. menuChoose([{"type":"menu","label":"Warm","items":[{"type":"sep"},{"type":"item","label":"Undo","goal":"go(91)"},{"type":"item","label":"File","goal":"go(81)","key":"Z"}]},{"type":"item","label":"Red","goal":"go(67)"}], [1])
+   => {"path":[],"run":"go(67)","closed":true}
+150. shortcut([{"type":"item","label":"File","goal":"go(1)"},{"type":"item","label":"Undo","goal":"go(23)"},{"type":"item","label":"File","goal":"go(63)"}], "q")
+   => null
+151. line(3, 4, 5, -3)
+   => [[3,4],[3,3],[4,2],[4,1],[4,0],[4,-1],[5,-2],[5,-3]]
+152. fill([[0,0,0,0,0]], 3, -1, 1)
+   => [[0,0,0,0,0]]
+153. dot(3, 7, 0, 2, 7, "square")
+   => [[1,1,1],[1,1,1],[1,1,1],[1,1,1],[1,1,1],[1,1,1],[1,1,1]]
+154. cursor({"f":"blob","a":[]})
+   => {"error":"a pointer is a name (crosshair, move, ...), circle(R, Colour), cross(Size, Colour), glyph(Text) or svg(Text, X, Y)"}
+155. script([["add","dot1","line",[17,14,41,2],{}],["add","box1","ellipse",[22,11,3,19],{}],["move","dot1",-18,19],["add","box2","text",[26,57,10,"Hello there"],{}],["add","s1","ellipse",[4,44,20,10],{"fill":"#81d4fa","width":1}],["select",["box2"]]])
+   => {"outline":[["layer1",["dot1","box1","box2","s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["box2"],"shapes":[["box1","ellipse",[22,11,3,19]],["box2","text",[26,57,10,"Hello there"]],["dot1","line",[-1,33,23,21]],["s1","ellipse",[4,44,20,10]]]}
+156. script([["add","s1","path",[[7,41],[31,4],[42,47]],{"fill":"#81d4fa","width":12}],["add","dot1","blob",[12],{}],["add","box1","text",[3,54,20,"Hi"],{"fill":"none","width":12}],["setLayer","layer1","shown",true],["add","box2","rect",[10,2,7,30],{}],["add","dot1","path",[[25,42],[56,45],[19,41]],{}],["toLayer","dot1","layer1"],["group",["box1","box2"],"g1"]])
+   => {"outline":[["layer1",["s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["s1","path",[[7,41],[31,4],[42,47]]]],"error":{"at":1,"message":"blob isn't a shape"}}
+157. hit([["add","box1","text",[56,34,20,"Hi"],{}],["add","s1","path",[[41,32],[13,35],[51,30],[58,30],[58,55]],{"fill":"#81d4fa","width":1}],["remove","s1"],["add","box2","text",[0,0,20,"Hi"],{}],["group",["box2"],"g1"],["add","s1","rect",[16,54,5,16],{}],["ungroup","g1"],["add","dot1","poly",[[22,7],[26,28],[33,27],[39,22]],{}],["group",["box2","dot1"],"g1"]], 48, 55)
+   => {"top":null,"deep":null}
+158. bounds([["add","Bad","rect",[0,37,-5,4],{"fill":"none","width":1}],["add","box1","ellipse",[42,24,18,5],{"fill":"#81d4fa","width":2}]], "nope")
+   => {"error":"nope isn't there"}
+159. menuKey([{"type":"item","label":"Red","goal":"go(20)"},{"type":"item","label":"Warm","goal":"go(81)","key":"z","enabled":false},{"type":"item","label":"Undo","goal":"go(99)","key":"Z"},{"type":"item","label":"Red","goal":"go(4)"}], [0], "enter")
+   => {"path":[],"run":"go(20)","closed":true}
+160. menuChoose([{"type":"item","label":"Colour","goal":"go(30)","key":"Z"}], [0])
+   => {"path":[],"run":"go(30)","closed":true}
+161. shortcut([{"type":"item","label":"Undo","goal":"go(29)","key":"Z"},{"type":"menu","label":"Colour","items":[{"type":"item","label":"Red","goal":"go(64)"}]},{"type":"sep"}], "z")
+   => "go(29)"
+162. line(1, -1, -6, -6)
+   => [[1,-1],[0,-2],[-1,-2],[-2,-3],[-3,-4],[-4,-5],[-5,-5],[-6,-6]]
+163. fill([[1,0,0,0,1]], 5, 0, 1)
+   => [[1,0,0,0,1]]
+164. dot(9, 3, 4, 2, 4, "square")
+   => [[0,0,1,1,1,1,1,0,0],[0,0,1,1,1,1,1,0,0],[0,0,1,1,1,1,1,0,0]]
+165. cursor({"f":"glyph","a":[""]})
+   => {"error":"glyph: one to three characters"}
+166. script([["add","box1","rect",[39,37,6,24],{}],["add","dot1","path",[[2,53]],{"fill":"#e53935","width":2}],["add","box2","poly",[[46,49],[51,20],[24,49]],{"fill":"none","width":12}],["add","box3","line",[11,25,2,38],{"fill":"none","width":2}],["remove","box1"],["group",["box2","box3","box2"],"g1"],["group",["box3","box2","box3"],"g1"],["move","box3",-8,-16]])
+   => {"outline":[["layer1",["box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","rect",[39,37,6,24]]],"error":{"at":1,"message":"path: not a shape I can draw"}}
+167. script([["add","s1","rect",[6,51,11,5],{}],["add","dot1","poly",[[17,55],[15,23],[51,38]],{}],["move","dot1",7,-7],["move","s1",-9,-14],["select",["dot1","s1"]],["select",["dot1","s1"]],["remove","s1"],["add","box1","rect",[4,12,30,2],{"fill":"#81d4fa","width":12}],["select",[]],["select",["box1"]]])
+   => {"outline":[["layer1",["dot1","box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":["box1"],"shapes":[["box1","rect",[4,12,30,2]],["dot1","poly",[[24,48],[22,16],[58,31]]]]}
+168. hit([["add","box1","path",[[15,60],[47,43]],{}],["add","box2","line",[1,10,53,58],{}],["add","box3","blob",[52],{"fill":"#81d4fa","width":6}],["restack","box1","front"],["group",["box1"],"g1"]], 27, 46)
+   => {"top":null,"deep":null}
+169. bounds([["add","s1","ellipse",[44,13,5,0],{"fill":"none","width":1}],["add","dot1","path",[[40,9],[50,2],[57,49],[54,20],[45,7]],{"fill":"#81d4fa","width":12}]], "dot1")
+   => [40,2,17,47]
+170. menuKey([{"type":"sep"},{"type":"item","label":"Edit","goal":"go(23)","key":"b"},{"type":"item","label":"Colour","goal":"go(93)","key":"z"}], [0], "tab")
+   => {"path":[0]}
+171. menuChoose([{"type":"menu","label":"Red","items":[{"type":"item","label":"Undo","goal":"go(30)","key":"z","enabled":false},{"type":"item","label":"Red","goal":"go(36)","key":"Z"},{"type":"sep"},{"type":"sep"}],"enabled":false}], [0])
+   => {"path":[]}
+172. shortcut([{"type":"sep"},{"type":"item","label":"Size","goal":"go(83)"}], "z")
+   => null
+173. line(-3, 0, 2, 3)
+   => [[-3,0],[-2,1],[-1,1],[0,2],[1,2],[2,3]]
+174. fill([[1,1,2,1,0,2],[0,1,1,2,0,1],[1,2,1,1,1,2]], 6, 2, 1)
+   => [[1,1,2,1,0,2],[0,1,1,2,0,1],[1,2,1,1,1,2]]
+175. dot(8, 4, 1, 3, 1, "round")
+   => [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,1,0,0,0,0,0,0]]
+176. cursor({"f":"glyph","a":["✏",29,25]})
+   => {"w":32,"h":32,"hot":[29,25]}
+177. script([["add","s1","ellipse",[11,22,26,5],{"fill":"#e53935","width":2}],["add","box1","rect",[34,55,22,19],{"fill":"#81d4fa","width":2}],["add","dot1","poly",[[44,11],[56,2],[40,20],[53,46],[43,57]],{}],["restack","dot1","front"],["setLayer","layer1","locked",false]])
+   => {"outline":[["layer1",["s1","box1","dot1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","rect",[34,55,22,19]],["dot1","poly",[[44,11],[56,2],[40,20],[53,46],[43,57]]],["s1","ellipse",[11,22,26,5]]]}
+178. script([["add","dot1","line",[10,5,28,52],{}],["add","box1","blob",[0],{"fill":"#81d4fa","width":1}],["add","box1","rect",[52,23,22,18],{}],["add","dot2","path",[[57,11],[7,26],[46,29],[57,54]],{"fill":"#e53935","width":12}],["group",["dot2","box1","dot1"],"g1"],["add","s1","path",[[15,5],[39,29]],{"fill":"#e53935","width":2}],["move","s1",-5,4],["setLayer","layer1","locked",false],["add","dot3","text",[41,3,10,"x"],{"fill":"#81d4fa","width":12}],["addLayer","layer2",""],["add","box2","path",[[48,48],[13,31],[56,46],[4,55]],{"fill":"none","width":12}]])
+   => {"outline":[["layer1",["dot1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","line",[10,5,28,52]]],"error":{"at":1,"message":"blob isn't a shape"}}
+179. hit([["add","9x","text",[10,29,0,"x"],{}],["add","dot1","poly",[[33,18],[45,45],[52,44],[60,2]],{"fill":"#81d4fa","width":1}],["add","s1","path",[[60,48],[4,28],[36,37],[56,47],[39,52]],{"fill":"none","width":12}],["toLayer","s1","layer1"],["toLayer","dot1","layer1"],["group",["dot1"],"g1"],["move","nope",-12,5],["restack","g1","front"],["add","s2","line",[7,49,34,18],{}],["addLayer","layer2",""]], 51, 32)
+   => {"top":"g1","deep":"dot1"}
+180. bounds([["add","s1","rect",[49,14,17,27],{}],["add","dot1","rect",[35,14,9,1],{"fill":"#81d4fa","width":2}],["group",["s1","dot1"],"g1"]], "g1")
+   => [35,14,31,27]
+181. menuKey([{"type":"item","label":"Size","goal":"go(24)","key":"z"},{"type":"item","label":"Blue","goal":"go(69)"}], [1], "down")
+   => {"path":[0]}
+182. menuChoose([{"type":"item","label":"Size","goal":"go(83)"},{"type":"menu","label":"File","items":[{"type":"sep"},{"type":"item","label":"Colour","goal":"go(93)"}]},{"type":"item","label":"Red","goal":"go(12)","enabled":false}], [2])
+   => {"path":[]}
+183. shortcut([{"type":"item","label":"Undo","goal":"go(64)"},{"type":"item","label":"Edit","goal":"go(93)"},{"type":"item","label":"Warm","goal":"go(85)"},{"type":"sep"}], "b")
+   => null
+184. line(3, 3, -6, 5)
+   => [[3,3],[2,3],[1,3],[0,4],[-1,4],[-2,4],[-3,4],[-4,5],[-5,5],[-6,5]]
+185. fill([[0,0],[0,0],[0,0],[0,0],[0,0]], 1, -1, 2)
+   => [[0,0],[0,0],[0,0],[0,0],[0,0]]
+186. dot(5, 6, 6, 0, 2, "round")
+   => [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]]
+187. cursor({"f":"svg","a":["<div width=\"2\" height=\"2\">",22,21]})
+   => {"error":"svg: an <svg> with width and height up to 128"}
+188. script([["add","s1","text",[2,36,10,"Hello there"],{"fill":"none","width":12}],["add","s2","poly",[[11,42],[20,60],[14,13],[3,59]],{"fill":"none","width":1}],["toLayer","s2","layer1"]])
+   => {"outline":[["layer1",["s1","s2"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["s1","text",[2,36,10,"Hello there"]],["s2","poly",[[11,42],[20,60],[14,13],[3,59]]]]}
+189. script([["add","dot1","rect",[10,44,11,4],{"fill":"none","width":1}],["add","dot2","rect",[23,0,7,24],{"fill":"#e53935","width":12}],["move","dot1",-20,6],["addLayer","layer2",""],["group",["dot1"],"g1"],["add","s1","path",[[32,15],[52,36],[27,35],[23,49],[50,31]],{}],["setLayer","layer1","shown",false],["restack","s1","raise"],["select",["dot2","s1"]],["add","box1","poly",[[5,30],[3,2],[20,52],[24,14],[6,59]],{}],["remove","nope"],["group",["g1","dot2"],"g2"],["setLayer","layer1","locked",false]])
+   => {"outline":[["layer1",[["g1",["dot1"]],"dot2"]],["layer2",["s1","box1"]]],"layers":[["layer1","Layer 1",false,false],["layer2","layer2",true,false]],"active":"layer2","selected":["dot2","s1"],"shapes":[["box1","poly",[[5,30],[3,2],[20,52],[24,14],[6,59]]],["dot1","rect",[-10,50,11,4]],["dot2","rect",[23,0,7,24]],["s1","path",[[32,15],[52,36],[27,35],[23,49],[50,31]]]],"error":{"at":10,"message":"nope isn't there"}}
+190. hit([["add","box1","line",[40,25,41,4],{"fill":"none","width":6}],["add","box2","poly",[[54,37]],{"fill":"#e53935","width":1}],["add","s1","poly",[[41,13]],{"fill":"#81d4fa","width":2}],["add","s1","rect",[25,3,20,20],{}],["remove","box1"]], 27, 18)
+   => {"top":"s1","deep":"s1"}
+191. bounds([["add","s1","path",[[18,39],[24,11],[45,27]],{}],["add","dot1","rect",[5,25,6,17],{}],["add","box1","rect",[17,20,17,16],{}],["select",["s1","dot1"]]], "nope")
+   => {"error":"nope isn't there"}
+192. menuKey([{"type":"sep"}], [0], "escape")
+   => {"path":[],"closed":true}
+193. menuChoose([{"type":"sep"}], [0])
+   => {"path":[]}
+194. shortcut([{"type":"item","label":"Warm","goal":"go(33)"}], "b")
+   => null
+195. line(0, -3, 5, 2)
+   => [[0,-3],[1,-2],[2,-1],[3,0],[4,1],[5,2]]
+196. fill([[1],[1]], 0, 1, 0)
+   => [[0],[0]]
+197. dot(3, 4, 6, 4, 4, "round")
+   => [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+198. cursor("none")
+   => {"w":0,"h":0,"hot":[0,0]}
+199. script([["add","dot1","rect",[51,6,2,28],{"fill":"#81d4fa","width":12}],["add","s1","ellipse",[4,27,13,4],{"fill":"#e53935","width":2}],["remove","dot1"],["add","box1","rect",[39,1,27,5],{"fill":"none","width":12}],["move","box1",10,14],["group",["s1"],"g1"]])
+   => {"outline":[["layer1",[["g1",["s1"]],"box1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["box1","rect",[49,15,27,5]],["s1","ellipse",[4,27,13,4]]]}
+200. script([["add","dot1","path",[[52,13],[15,38],[53,10],[25,52],[46,29]],{"fill":"#81d4fa","width":1}],["add","dot2","path",[[52,5],[29,3],[15,9],[22,42]],{"fill":"#81d4fa","width":1}],["add","s1","ellipse",[58,39,4,0],{"fill":"#81d4fa","width":12}],["select",["nope"]],["move","dot1",-7,-2],["remove","dot2"],["setLayer","layer1","shown",true],["move","s1",-1,9]])
+   => {"outline":[["layer1",["dot1","dot2","s1"]]],"layers":[["layer1","Layer 1",true,false]],"active":"layer1","selected":[],"shapes":[["dot1","path",[[52,13],[15,38],[53,10],[25,52],[46,29]]],["dot2","path",[[52,5],[29,3],[15,9],[22,42]]],["s1","ellipse",[58,39,4,0]]],"error":{"at":3,"message":"nope isn't there"}}

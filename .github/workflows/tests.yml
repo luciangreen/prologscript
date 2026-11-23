@@ -1,0 +1,26 @@
+name: Tests and proofs
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install SWI-Prolog
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes swi-prolog-nox
+      - name: Unit tests and the recorded inputs and outputs
+        run: npm test
+      - name: The 11 theorems and the 200 examples against the Prolog spec
+        run: npm run proofs

@@ -1,0 +1,12 @@
+{
+  "name": "prologscript",
+  "version": "0.1.0",
+  "description": "PrologScript: Prolog in place of JavaScript, its commands made visual (menus, painting, vector graphics, drag and drop, pointers), as a plug-in for Visual Starlog in LucianOS",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "ios": "node io/make-ios.mjs",
+    "proofs": "swipl -g main -t halt proofs/theorems.pl && swipl -g check -t halt proofs/ios.pl"
+  },
+  "license": "BSD-3-Clause"
+}

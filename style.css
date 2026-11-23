@@ -1,0 +1,70 @@
+:root {
+  --bg: #f4f6fa; --card: #fff; --ink: #1d2433; --quiet: #6b7385; --line: #dde2ea; --accent: #3557d6; --accent-soft: #e6ecff;
+  --ran: #fff2b8; --bad: #b3261e; --good: #18794e;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); display: flex; flex-direction: column; }
+button { font: inherit; color: inherit; }
+.quiet { color: var(--quiet); }
+
+.top { display: flex; align-items: center; gap: 16px; padding: 8px 14px; background: var(--card); border-bottom: 1px solid var(--line); padding-top: max(8px, env(safe-area-inset-top)); }
+.brand { font-weight: 700; letter-spacing: .2px; }
+.tabs { display: flex; gap: 4px; overflow-x: auto; }
+.tabs a { padding: 6px 12px; border-radius: 8px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.tabs a.on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+
+main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 430px); grid-template-rows: auto minmax(0, 1fr); gap: 10px; padding: 10px; }
+main.side-closed { grid-template-columns: minmax(0, 1fr) 40px; }
+.pane { background: var(--card); border: 1px solid var(--line); border-radius: 12px; min-height: 0; }
+.lesson { grid-column: 1 / -1; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; }
+.run { overflow: auto; padding: 10px; grid-row: 2; }
+.side { display: flex; flex-direction: column; overflow: hidden; grid-row: 2; }
+.pane-head { display: flex; gap: 8px; align-items: baseline; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); background: none; padding: 9px 12px; font-weight: 600; cursor: pointer; }
+.pane-head::before { content: '▾'; color: var(--quiet); }
+.side.closed .pane-head { writing-mode: vertical-rl; height: 100%; border: 0; padding: 12px 8px; }
+.side.closed .pane-head::before { content: '▸'; }
+.side.closed .side-body { display: none; }
+.side-body { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.code-tools { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; padding: 8px 10px; }
+.code-tools button, .trace-head button, .lesson button { border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+#runCode { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.code { position: relative; flex: 1 1 55%; min-height: 160px; display: flex; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; font: 12.5px/18px var(--mono); }
+.gutter { width: 38px; flex: none; padding: 6px 6px 0 0; text-align: right; color: #9aa1b0; background: #fafbfd; border-right: 1px solid var(--line); overflow: hidden; white-space: pre; user-select: none; }
+.code textarea { flex: 1; border: 0; resize: none; padding: 6px 8px 40px; font: inherit; color: var(--ink); background: transparent; position: relative; z-index: 1; outline: none; white-space: pre; overflow: auto; tab-size: 4; }
+.ran { position: absolute; left: 38px; right: 0; top: 0; pointer-events: none; }
+.ran div { position: absolute; left: 0; right: 0; background: var(--ran); border-left: 3px solid #e0a800; }
+.trace-head { display: flex; gap: 8px; align-items: baseline; padding: 6px 10px; }
+.trace-head button { margin-left: auto; }
+.trace { flex: 1 1 45%; min-height: 90px; margin: 0; padding: 0 10px 10px; list-style: none; overflow: auto; font: 12px/1.4 var(--mono); }
+.trace li { padding: 4px 0; border-bottom: 1px dashed var(--line); }
+.trace .goal { color: var(--accent); }
+.trace .cmd { color: #364055; padding-left: 14px; display: block; white-space: pre-wrap; word-break: break-word; }
+.trace .err { color: var(--bad); padding-left: 14px; display: block; }
+.trace .no { color: var(--quiet); padding-left: 14px; display: block; }
+
+/* ---- tutes */
+.lesson h2 { margin: 0 0 4px; font-size: 18px; }
+.lesson .step-of { color: var(--quiet); font-size: 13px; }
+.lesson p { margin: 6px 0; max-width: 75ch; }
+.lesson code { font: 13px var(--mono); background: #f0f2f7; padding: 1px 4px; border-radius: 4px; }
+.lesson .nav { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.lesson .check { font-weight: 600; }
+.lesson .check.ok { color: var(--good); }
+.lesson .check.no { color: var(--bad); }
+.tute-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.tute-list a { display: block; padding: 12px; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: var(--ink); background: #fff; }
+.tute-list a strong { display: block; }
+.tute-list a.done strong::after { content: ' ✓'; color: var(--good); }
+
+@media (max-width: 860px) {
+  main { grid-template-columns: 1fr; grid-template-rows: auto auto auto; overflow: auto; }
+  main.side-closed { grid-template-columns: 1fr; }
+  .run, .side { grid-row: auto; }
+  .side.closed .pane-head { writing-mode: horizontal-tb; height: auto; }
+  .code { min-height: 240px; }
+  .trace { max-height: 260px; }
+}

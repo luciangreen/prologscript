@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PrologScript</title>
+<link rel="stylesheet" href="lib/view.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Ctext y=%2226%22 font-size=%2226%22%3E%F0%9F%8E%A8%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <span class="brand">PrologScript</span>
+  <nav class="tabs" aria-label="Programs">
+    <a href="#paint" data-go="paint">🎨 Paint</a>
+    <a href="#draw" data-go="draw">✏️ Draw</a>
+    <a href="#tutes" data-go="tutes">📘 Tutes</a>
+    <a href="#mine" data-go="mine">🧩 My program</a>
+  </nav>
+</header>
+<main id="main">
+  <section id="lesson" class="lesson" hidden aria-label="Tute"></section>
+  <section id="run" class="pane run" aria-label="Running program">
+    <div id="stage" class="stage-host"><p class="quiet">Starting the Prolog engine…</p></div>
+  </section>
+  <section id="side" class="pane side" aria-label="Code">
+    <button type="button" id="sideToggle" class="pane-head" aria-expanded="true">Code <span id="codeName" class="quiet"></span></button>
+    <div class="side-body">
+      <div class="code-tools">
+        <button type="button" id="runCode" title="Run the code (Ctrl+Enter)">▶ Run</button>
+        <button type="button" id="resetCode" title="Back to the original">Reset</button>
+        <button type="button" id="downloadCode" title="Download this program">Download .pl</button>
+        <span id="codeMsg" class="quiet" role="status"></span>
+      </div>
+      <div class="code">
+        <div id="gutter" class="gutter" aria-hidden="true"></div>
+        <div id="ran" class="ran" aria-hidden="true"></div>
+        <textarea id="codeText" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="The program"></textarea>
+      </div>
+      <div class="trace-head"><strong>What ran</strong> <span class="quiet">each event, and the commands it gave</span> <button type="button" id="clearTrace">Clear</button></div>
+      <ol id="trace" class="trace" aria-live="polite"></ol>
+    </div>
+  </section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>
